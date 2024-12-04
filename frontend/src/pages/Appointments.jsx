@@ -81,8 +81,14 @@ const Appointments = () => {
   }, [docInfo])
 
   useEffect(() => {
-    console.log(docSlots);
-  }, [docSlots])
+    console.log("Doctor Slots : ",docSlots);
+    console.log(typeof slotTime);
+    docSlots.map((item,index)=>{
+      console.log(item.length===22)
+      
+    })
+    
+  }, [docSlots,slotTime])
 
   return docInfo && (
     <div>
@@ -120,9 +126,10 @@ const Appointments = () => {
         <div className='flex gap-3 items-center w-full overflow-x-scroll mt-4'>
             {
               docSlots.length && docSlots.map((item,index)=>(
+                item.length!==0 && <div>
                 <div onClick={() => setSlotIndex(index)} className={`text-center py-6 min-w-16 rounded-full cursor-pointer ${slotIndex === index ? 'bg-primary text-white' : 'border border-gray-200'}`}  key={index}>
                   <p>{item[0] && daysOfWeek[item[0].datetime.getDay()]}</p>
-                  <p>{item[0] && item[0].datetime.getDate()}</p>
+                  <p>{item[0] && item[0].datetime.getDate()}</p></div>
 
                 </div>
               ))
